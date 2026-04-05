@@ -1,0 +1,35 @@
+﻿<nav class="navbar">
+    <div class="nav-brand">
+        <div class="brand-avatar">
+            <img src="profile.png" alt="Shane Khryss Bantilan"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <span class="brand-initials-fallback" style="display:none">SKB</span>
+        </div>
+        <span class="brand-name">Shane Khryss Bantilan</span>
+        <span class="brand-sub">BSIT Student&nbsp;&nbsp;·&nbsp;&nbsp;SSG Multimedia Staff</span>
+        <div class="brand-divider"></div>
+    </div>
+
+    <button class="hamburger @(open ? "open" : "")" @onclick="Toggle">
+        <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links @(open ? "open" : "")">
+        <li><NavLink href="" Match="NavLinkMatch.All" @onclick="Close">Home</NavLink></li>
+        <li><NavLink href="about" @onclick="Close">About</NavLink></li>
+        <li><NavLink href="education" @onclick="Close">Education</NavLink></li>
+        <li><NavLink href="skills" @onclick="Close">Skills</NavLink></li>
+        <li><NavLink href="projects" @onclick="Close">Projects</NavLink></li>
+        <li><NavLink href="contact" @onclick="Close">Contact</NavLink></li>
+    </ul>
+
+    <div class="nav-footer">
+        © 2025 Shane Khryss Bantilan<br/>Built with Blazor
+    </div>
+</nav>
+
+@code {
+    bool open;
+    void Toggle() => open = !open;
+    void Close() => open = false;
+}

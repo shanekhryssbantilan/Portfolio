@@ -1,0 +1,39 @@
+@page "/skills"
+
+<PageTitle>Skills — Shane Khryss Bantilan</PageTitle>
+
+<div class="page">
+    <div class="page-header">
+        <span class="page-eyebrow">Skills & Tools</span>
+        <h2 class="page-title">What I<br /><em>Work With</em></h2>
+    </div>
+
+    <div class="skills-grid">
+        @foreach (var s in skills)
+        {
+            <div class="skill-card">
+                <span class="sk-icon">@s.Icon</span>
+                <span class="sk-name">@s.Name</span>
+                <span class="sk-cat">@s.Category</span>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    record Skill(string Icon, string Name, string Category);
+
+    List<Skill> skills = new()
+    {
+        new("🎨", "Adobe Photoshop",  "Design"),
+        new("📷", "Photography",       "Creative"),
+        new("✏️", "Canva",             "Design"),
+        new("🖼️", "Layout Design",     "Design"),
+        new("🌄", "Adobe Lightroom",   "Creative"),
+        new("🌐", "HTML",              "Web"),
+        new("🎀", "CSS",               "Web"),
+        new("⚡", "JavaScript",        "Web"),
+        new("☕", "Java",              "Programming"),
+        new("🔷", "C",                 "Programming"),
+    };
+}

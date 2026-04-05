@@ -1,0 +1,7 @@
+C:\PORTFOLIO\Bantilan\publish\Bantilan.exe
+C:\PORTFOLIO\Bantilan\publish\appsettings.Development.json
+C:\PORTFOLIO\Bantilan\publish\appsettings.json
+C:\PORTFOLIO\Bantilan\publish\Bantilan.dll
+C:\PORTFOLIO\Bantilan\publish\Bantilan.runtimeconfig.json
+C:\PORTFOLIO\Bantilan\publish\Bantilan.pdb
+C:\PORTFOLIO\Bantilan\publish\Bantilan.deps.json

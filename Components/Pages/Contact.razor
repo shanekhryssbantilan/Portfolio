@@ -1,0 +1,117 @@
+@page "/contact"
+
+<PageTitle>Contact — Shane Khryss Bantilan</PageTitle>
+
+<div class="page">
+    <div class="page-header">
+        <span class="page-eyebrow">Get In Touch</span>
+        <h2 class="page-title">Let's<br /><em>Connect</em></h2>
+    </div>
+
+    <div class="contact-grid">
+        <!-- Left: Info -->
+        <div>
+            <p class="contact-intro">
+                I'm currently open to opportunities, collaborations, and just a good conversation.
+                Feel free to reach out through any of the channels below — I'd love to hear from you!
+            </p>
+
+            <div class="c-cards">
+                <a href="mailto:shanekhryssbantilan@gmail.com" class="c-card">
+                
+                    <div>
+                        <span class="c-label">Gmail</span>
+                        <span class="c-val">shanekhryssbantilan@gmail.com</span>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/shane-khryss-bantilan-0b312a315" target="_blank" class="c-card">
+                    
+                    <div>
+                        <span class="c-label">LinkedIn</span>
+                        <span class="c-val">shane-khryss-bantilan</span>
+                    </div>
+                </a>
+                <a href="https://github.com/shanekhryssbantilan" target="_blank" class="c-card">
+                    
+                    <div>
+                        <span class="c-label">GitHub</span>
+                        <span class="c-val">shanekhryssbantilan</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div>
+            @if (sent)
+            {
+                <div class="success-wrap">
+                    <span class="s-icon">🎉</span>
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out. I'll get back to you soon!</p>
+                    <button class="btn-primary" @onclick="Reset">Send Another</button>
+                </div>
+            }
+            else
+            {
+                <div class="form-wrap">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" @bind="name" placeholder="Juan dela Cruz"
+                                   class="form-input @(errors.ContainsKey("name") ? "error" : "")" />
+                            @if (errors.ContainsKey("name")) { <span class="field-error">@errors["name"]</span> }
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" @bind="email" placeholder="juan@email.com"
+                                   class="form-input @(errors.ContainsKey("email") ? "error" : "")" />
+                            @if (errors.ContainsKey("email")) { <span class="field-error">@errors["email"]</span> }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" @bind="subject" placeholder="Project Inquiry / Collaboration"
+                               class="form-input" />
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea @bind="message" placeholder="Hi Shane, I'd like to..." rows="5"
+                                  class="form-input @(errors.ContainsKey("message") ? "error" : "")"></textarea>
+                        @if (errors.ContainsKey("message")) { <span class="field-error">@errors["message"]</span> }
+                    </div>
+                    <button class="btn-primary full-width @(sending ? "loading" : "")"
+                            @onclick="Submit" disabled="@sending">
+                        @(sending ? "Sending…" : "Send Message →")
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    string name = "", email = "", subject = "", message = "";
+    bool sending, sent;
+    Dictionary<string, string> errors = new();
+
+    async Task Submit()
+    {
+        errors.Clear();
+        if (string.IsNullOrWhiteSpace(name))  errors["name"]    = "Name is required.";
+        if (string.IsNullOrWhiteSpace(email) || !email.Contains("@")) errors["email"] = "Valid email required.";
+        if (string.IsNullOrWhiteSpace(message)) errors["message"] = "Please write a message.";
+        if (errors.Any()) return;
+
+        sending = true;
+        await Task.Delay(1500);
+        sending = false;
+        sent = true;
+    }
+
+    void Reset()
+    {
+        name = email = subject = message = "";
+        sent = false; errors.Clear();
+    }
+}
