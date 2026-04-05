@@ -93,7 +93,7 @@ body::after{
     border-radius:99px;margin-top:0.85rem;
 }
 
-/* Nav links: centered, larger */
+
 .nav-links{
     display:flex;flex-direction:column;gap:0.25rem;width:100%;
     align-items:center;
